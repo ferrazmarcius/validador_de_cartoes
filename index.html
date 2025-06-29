@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador de Cartões de Crédito</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Validador de Cartões de Crédito</h1>
+    </header>
+
+    <div class="container" style="text-align: center;">
+        <form id="form" method="POST" action="/validar-cartao">
+            <label for="cardNumber">Número do Cartão:</label>
+            <input type="text" id="cardNumber" name="cardNumber" required>
+            <input type="submit" value="Validar">
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <footer style="text-align: center;">
+        <p>Desenvolvido por Marcius Ferraz</p>
+        <p>&copy; 2025 Validador de Cartões de Crédito</p>
+    </footer>
+
+    <script src="/static/script.js" defer></script>
+</body>
+</html>
