@@ -1,62 +1,63 @@
-# Validador de Bandeira de Cartão de Crédito 💳
+# Validador de Cartões de Crédito 💳 (API com FastAPI)
 
-![Python](https://img.shields.io/badge/python-3.x-blue.svg)
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
+![Python](https://img.shields.io/badge/python-3.x-blue.svg?style=for-the-badge&logo=python)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-Um script simples em Python para validar e identificar a bandeira de um número de cartão de crédito. Este projeto foi desenvolvido como um desafio de código para praticar lógica condicional e manipulação de strings em Python.
+Uma aplicação web completa para validar e identificar a bandeira de um número de cartão de crédito. O projeto utiliza um back-end construído com **FastAPI** e um front-end interativo com **HTML, CSS e JavaScript**, que consome a API de forma assíncrona.
 
 ## ✨ Funcionalidades
 
-* Validação baseada no número de dígitos e nos prefixos oficiais de cada bandeira.
-* Interface de linha de comando interativa e de fácil utilização.
-* Código limpo, comentado e de fácil entendimento.
-* Suporte para as principais bandeiras utilizadas no mercado.
+* **Interface Web Interativa:** Uma página simples e limpa para que o usuário possa inserir o número do cartão e ver o resultado em tempo real, sem recarregar a página.
+* **API RESTful:** Um endpoint `POST` que recebe os dados do cartão em formato JSON e retorna a bandeira identificada.
+* **Validação no Back-end:** Toda a lógica de verificação de prefixos e comprimentos é executada no lado do servidor, em Python.
+* **Suporte às Principais Bandeiras:** O sistema reconhece as bandeiras mais comuns do mercado.
 
-## 🚀 Como Usar
+## 🚀 Como Executar o Projeto
 
-Este projeto não requer a instalação de nenhuma biblioteca externa. Basta ter o Python 3 instalado no seu sistema.
+Este projeto utiliza um ambiente virtual Python e FastAPI. Para executá-lo, siga os passos abaixo.
 
 1.  **Clone o repositório:**
     ```bash
-    git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/seu-usuario/seu-repositorio.git)
+    git clone [https://github.com/ferrazmarcius/validador_de_cartoes.git](https://github.com/ferrazmarcius/validador_de_cartoes.git)
     ```
 
 2.  **Navegue até a pasta do projeto:**
     ```bash
-    cd seu-repositorio
+    cd validador_de_cartoes
     ```
 
-3.  **Execute o script:**
+3.  **Crie e ative o ambiente virtual:**
     ```bash
-    python validacao.py
+    # Criar o ambiente
+    python -m venv .venv
+    
+    # Ativar no Windows (Git Bash)
+    source .venv/Scripts/activate
+    
+    # Ativar no Linux/macOS
+    # source .venv/bin/activate
     ```
 
-4.  O programa irá solicitar que você digite o número do cartão de crédito. Após inserir e pressionar Enter, ele exibirá a bandeira correspondente ou uma mensagem de erro.
+4.  **Instale as dependências:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-**Exemplo de uso:**
-```
-$ python validacao.py
-Digite o número do cartão de crédito para validação: 4111222233334444
-✅ A bandeira do cartão é: Visa
-```
+5.  **Inicie o servidor da API:**
+    ```bash
+    uvicorn main:app --reload
+    ```
 
-## 💳 Bandeiras Suportadas
+6.  **Acesse a aplicação:**
+    * Abra o seu navegador e acesse: **http://127.0.0.1:8000**
 
-O validador utiliza as seguintes regras para identificar as bandeiras:
+## Endpoints da API
 
-| Bandeira | Dígitos | Prefixos |
-| :--- | :---: | :--- |
-| **Visa** | 16 | [cite_start]Começa com `4`[cite: 1]. |
-| **Mastercard** | 16 | [cite_start]Começa com `51`, `52`, `53`, `54` ou `55`[cite: 1]. |
-| **American Express**| 15 | [cite_start]Começa com `34`[cite: 1]. |
-| **Elo** | 16 | [cite_start]`4011`, `4312`, `4389`, `4514`, `4576`, `5041`, `5067`, `5090` e outros[cite: 1]. |
-| **Hipercard** | 16 | [cite_start]Começa com `60` a `65`[cite: 1]. |
-| **Discover** | 16 | [cite_start]`6011`, `65`, e intervalos como `622126` a `622925` ou `644` a `649`[cite:1]. |
+A API possui os seguintes endpoints:
 
-## 🤝 Contribuição
-
-Contribuições são muito bem-vindas! Se você tiver sugestões para adicionar novas bandeiras ou melhorar a lógica de validação, sinta-se à vontade para abrir uma *issue* ou enviar um *pull request*.
-
-## 📝 Licença
-
-Este projeto está licenciado sob a Licença MIT.
+* `GET /`: Retorna a página principal da aplicação (`index.html`).
+* `POST /validar-cartao`: Recebe um corpo JSON com o número do cartão e retorna a bandeira.
+    * **Request Body:** `{"numero_cartao": "..."}`
+    * **Response Body:** `{"bandeira": "Nome da Bandeira"}
